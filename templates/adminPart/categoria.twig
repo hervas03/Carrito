@@ -1,0 +1,44 @@
+{# Enlazar este fichero con la plantilla correspondiente #}
+{% extends "layouts/admin.twig" %}
+
+{% block title %}Admin Zone{% endblock %}
+
+{% block content %}	
+<br><br>
+    <!-- cart -->
+	<div class="cart-section mt-150 mb-150">
+		<div class="container">
+         <a href="{{ URL }}?controller=user&action=index" >
+         <p><a href="{{ URL }}?controller=categoria&action=createCategoria" class="btn btn-primary">Crear</a></p>
+         </a>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="cart-table-wrap">
+						 <table class="table {#table-bordered#}"> 
+							<thead>
+								<tr>
+								<th class="col col-2" scope="col">Id</th>
+								<th class="col col-3" scope="col">Nombre</th>
+								<th class="col col-3" scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+							{% for c in categoria %}
+								<tr>
+								<th>{{ c.id_categorias }}</th>
+								<td>{{ c.nombre_categoria }}</td>
+								<td class="justify-content-end">
+								 	<a href="{{ URL }}?controller=categoria&action=edit&id={{ c.id_categorias }}" class="btn btn-secondary w-25">Edit</a>
+									<a href="{{ URL }}?controller=categoria&action=delete&id={{ c.id_categorias }}" class="btn btn-danger w-25">Delete</a>
+								</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end cart --> 
+{% endblock %}

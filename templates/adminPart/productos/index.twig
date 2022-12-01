@@ -1,0 +1,52 @@
+{# Enlazar este fichero con la plantilla correspondiente #}
+{% extends "layouts/admin.twig" %}
+
+{% block title %}Admin Coches_RC Zone{% endblock %}
+
+{% block content %}	
+<br><br>
+    <!-- cart -->
+	<div class="cart-section mt-150 mb-150">
+		<div class="container">
+         <a href="{{ URL }}?controller=user&action=index" >
+         <p><a href="{{ URL }}?controller=productos&action=createProducto" class="btn btn-primary">Crear</a></p>
+         </a>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="cart-table-wrap">
+						 <table class="table {#table-bordered#}"> 
+							<thead>
+								<tr>
+								<th class="col col-1" scope="col">Id</th>
+								<th class="col col-1" scope="col">Nombre</th>
+								<th class="col col-1" scope="col">Descripcion</th>
+								<th class="col col-1" scope="col">Precio</th>
+								<th class="col col-1" scope="col">Stock</th>
+								<th class="col col-1" scope="col">Categoria</th>
+								<th class="col col-2" scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+							{% for p in productos %}
+								<tr>
+								<th>{{ p.id_productos }}</th>
+								<td>{{ p.nombre }}</td>
+								<td>{{ p.descripcion }}</td>
+								<td>{{ p.precio }}</td>
+								<td>{{ p.stock }}</td>
+								<td>{{ p.nombre_categoria }}</td>
+								<td class="justify-content-end">
+								 	<a href="{{ URL }}?controller=productos&action=edit&id={{ p.id_productos }}" class="btn btn-secondary w-25">Edit</a>
+									<a href="{{ URL }}?controller=productos&action=delete&id={{ p.id_productos }}" class="btn btn-danger w-25">Delete</a>
+								</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end cart --> 
+{% endblock %}
