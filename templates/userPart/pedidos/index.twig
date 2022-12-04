@@ -1,0 +1,40 @@
+{# Enlazar este fichero con la plantilla correspondiente #}
+{% extends "layouts/private.twig" %}
+
+{% block title %}User Zone{% endblock %}
+
+{% block content %}
+<br><br>
+<!-- cart -->
+<div class="cart-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="cart-table-wrap">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="col col-5" scope="col">Id</th>
+                                <th class="col col-5" scope="col">fecha</th>
+                                <th class="col col-5" scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {% for p in pedido %}
+								<tr>
+								<th scope="row">{{ p.id_pedido }}</th>
+								<td >{{ p.fecha }}</td>
+                                <td>
+									<a href="{{ URL }}pedidos/pedidosInfoIndex&id={{ p.id_pedido }}" class="btn btn-danger">Mas información</a>			
+                                </td>						
+								</tr>
+							{% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end cart -->
+{% endblock %}

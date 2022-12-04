@@ -16,7 +16,7 @@ class ProductosController
                 ]
             );
         } else {
-            header('Location: ' . URL . '?controller=auth&action=login');
+            header('Location: ' . URL . 'auth/login');
         }
     }
 
@@ -38,9 +38,9 @@ class ProductosController
             $producto->setStock($_POST['stock']);
             $producto->setCategoria($_POST['categoria']);
             $producto->save();
-            header('Location: '.URL.'?controller=productos&action=productosAdmin');
+            header('Location: '.URL.'productos/productosAdmin');
         }else{
-            header('Location: '.URL.'?controller=auth&action=login');
+            header('Location: '.URL.'auth/login');
         }
     }
 
@@ -57,7 +57,7 @@ class ProductosController
                 ]
             );
         }else{
-            header('Location: '.URL.'controller=auth&action=login');
+            header('Location: '.URL.'controller=auth/login');
         }
     }
 
@@ -71,9 +71,20 @@ class ProductosController
             $producto->setStock($_POST['stock']);
             $producto->setCategoria($_POST['categoria']);
             $producto->update();
-            header('Location: '.URL.'?controller=productos&action=productosAdmin');
+            header('Location: '.URL.'productos/productosAdmin');
         }else{
-            header('Location: '.URL.'?controller=auth&action=login');
+            header('Location: '.URL.'auth/login');
+        }
+    }
+
+    public static function delete(){
+        if(isset($_SESSION['identity'])){
+            $producto = new Productos();
+            $producto->setId($_GET['id']);
+            $producto->delete();
+            header('Location: '.URL.'productos/productosAdmin');
+        }else{
+            header('Location: '.URL.'auth/login');
         }
     }
 

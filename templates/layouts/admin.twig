@@ -18,7 +18,7 @@
 <body>
  <nav class="navbar navbar-expand-lg bg-black">
   <div class="container-fluid">
-    <a class="navbar-brand text-white ps-4 pt-2 pb-2 pe-2 fs-2" href="#"><img src="imagenes/logo.png"></a>
+    <a class="navbar-brand text-white ps-4 pt-2 pb-2 pe-2 fs-2" href="#"><img src="/2DAW/Carrito/assets/imagenes/logo.png"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,14 +26,14 @@
     
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}?controller=user&action=indexAdmin">Usuarios</a>
+          <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}user/indexAdmin">Usuarios</a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}?controller=categoria&action=categoriaAdmin">Categorias</a>
+          <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}categoria/categoriaAdmin">Categorias</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}?controller=productos&action=productosAdmin">Productos</a>
+          <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}productos/productosAdmin">Productos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="#">Pest.admin</a>
@@ -43,12 +43,38 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success text-white" type="submit">Search</button>
       </form>
-      <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}?controller=auth&action=logout">
+
+      <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}auth/logout" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         <div>Cerrar sesión</div>
       </a>
     </div>
   </div>
 </nav>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 pe-3" id="staticBackdropLabel">Logout</h1>
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      
+        Estas a punto de cerrar sesion, ¿estas seguro?
+      </div>
+      <div class="modal-footer">
+        <a class="btn nav-link text-black ps-5 pt-2 pb-2 pe-5 fs-5" data-bs-dismiss="modal">
+        <div>Cancelar</div>
+        </a>
+        <a class="nav-link text-black ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}auth/logout">
+        <div>Cerrar sesión</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 {% block content %} {% endblock %}
 </body>
 </html>

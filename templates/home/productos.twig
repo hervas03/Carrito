@@ -1,0 +1,27 @@
+{# Enlazar este fichero con la plantilla correspondiente #}
+{% extends "layouts/public.twig" %}
+
+{% block title %}User Zone{% endblock %}
+
+{% block content %}
+<div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4 m-5">
+    {% for p in productos %}
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title d-none">{{ p.id_productos }}</h5>
+                <h5 class="card-title">{{ p.nombre }}</h5>
+                <p class="card-text">{{ p.descripcion }}</p>
+                <p class="card-text">{{ p.precio }}</p>
+                <p class="card-text">{{ p.stock }}</p>
+                <p class="card-text">{{ p.nombre_categoria }}</p>
+            </div>
+            <div class="card-body">
+                <a href="{{ URL }}?controller=carrito&action=agregar&id={{ p.id_productos }}" class="btn btn-danger"><i
+                        class="fas fa-shopping-cart"></i> Agregar al carrito</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

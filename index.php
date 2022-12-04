@@ -6,15 +6,23 @@ require_once 'controllers/AuthController.php';
 require_once 'controllers/UserController.php';
 require_once 'controllers/ProductosController.php';
 require_once 'controllers/CategoriaController.php';
+require_once 'controllers/PedidosController.php';
+require_once 'controllers/CarritoController.php';
 require_once 'config/parameters.php';
 include 'models/Categoria.php';
 include 'models/Productos.php';
+include 'models/Carrito.php';
+include 'models/Pedido.php';
+include 'models/Pedidos_has_productos.php';
 
 session_start();
 
 //indicamos que el directorio raiz sera la carpeta templates
 $loader = new \Twig\Loader\FilesystemLoader('templates');
-$twig = new \Twig\Environment($loader);
+$twig = new \Twig\Environment($loader, [
+    'debug' => true
+]);
+$twig->addExtension(new \Twig\Extension\DebugExtension());
 
 if (isset($_GET['controller'])) {
     $controller = ucfirst($_GET['controller']).'Controller'; //User controller

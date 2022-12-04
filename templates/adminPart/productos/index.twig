@@ -8,9 +8,9 @@
     <!-- cart -->
 	<div class="cart-section mt-150 mb-150">
 		<div class="container">
-         <a href="{{ URL }}?controller=user&action=index" >
-         <p><a href="{{ URL }}?controller=productos&action=createProducto" class="btn btn-primary">Crear</a></p>
-         </a>
+         
+         <p><a href="{{ URL }}productos/createProducto" class="btn btn-primary">Crear</a></p>
+         
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="cart-table-wrap">
@@ -36,8 +36,8 @@
 								<td>{{ p.stock }}</td>
 								<td>{{ p.nombre_categoria }}</td>
 								<td class="justify-content-end">
-								 	<a href="{{ URL }}?controller=productos&action=edit&id={{ p.id_productos }}" class="btn btn-secondary w-25">Edit</a>
-									<a href="{{ URL }}?controller=productos&action=delete&id={{ p.id_productos }}" class="btn btn-danger w-25">Delete</a>
+								 	<a href="{{ URL }}productos/edit&id={{ p.id_productos }}" class="btn btn-secondary w-25">Edit</a>
+									<a href="{{ URL }}productos/delete&id={{ p.id_productos }}" class="btn btn-danger w-25">Delete</a>
 								</td>
 								</tr>
 							{% endfor %}

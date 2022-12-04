@@ -11,7 +11,7 @@ class UserController
         if (isset($_SESSION['identity']) && isset($_SESSION['admin'])) {
             $user = new User();
             echo $GLOBALS["twig"]->render(
-                'adminPart/index.twig',
+                'adminPart/user/index.twig',
                 [
                     //que me encuentre todos los users en la variable users
                     'users' => $user->findAll(),
@@ -20,25 +20,30 @@ class UserController
                 ]
             );
         } else {
-            header('Location: ' . URL . '?controller=auth&action=login');
+            header('Location: ' . URL . 'auth/login');
         }
     }
 
-    // public static function save()
-    // {
-    //     if (isset($_SESSION['identity']) && isset($_SESSION['admin'])) {
-    //         $user = new User();
-    //         $user->setNombre($_POST['nombre']);
-    //         $user->setEmail($_POST['email']);
-    //         if (isset($_POST['password'])) {
-    //             $user->setPassword(password_hash($_POST['password'], PASSWORD_BCRYPT, ['cont' => 4]));
-    //         }
-    //         $user->save();
-    //         header('Location: ' . URL . 'controller=users&action=index');
-    //     } else {
-    //         header('Location: ' . URL . 'controller=auth&action=login');
-    //     }
-    // }
+    public function indexUser(){
+        $productos = new Productos();
+        echo $GLOBALS['twig']->render('userPart/index.twig',
+            [
+                'productos' => $productos->findAll(),
+                'identity' => $_SESSION['identity'],
+                'URL' => URL
+            ]
+        );
+    }
+
+    public function indexPublic(){
+        $productos = new Productos();
+        echo $GLOBALS['twig']->render('home/productos.twig',
+            [
+                'productos' => $productos->findAll(),
+                'URL' => URL
+            ]
+        );
+    }
 
     //eliminar desde el administrador unn usuario
     public static function delete(){
@@ -47,9 +52,9 @@ class UserController
             $user->setId($_GET['id']);
             $user->delete();
             $user->deleteRol();
-            header('Location: '.URL.'?controller=user&action=indexAdmin');
+            header('Location: '.URL.'user/indexAdmin');
         }else{
-            header('Location: '.URL.'?controller=auth&action=login');
+            header('Location: '.URL.'auth/login');
         }
     }
 
@@ -74,7 +79,7 @@ class UserController
                 ]
             );
         }else{
-            header('Location: '.URL.'controller=auth&action=login');
+            header('Location: '.URL.'controller=auth/login');
         }
     }
 
@@ -91,9 +96,9 @@ class UserController
             }
             $user->saveRol();
             $user->save();
-            header('Location: '.URL.'?controller=user&action=indexAdmin');
+            header('Location: '.URL.'user/indexAdmin');
         }else{
-            header('Location: '.URL.'?controller=auth&action=login');
+            header('Location: '.URL.'auth/login');
         }
     }
 
@@ -110,9 +115,9 @@ class UserController
             }
             $user->updateRol();
             $user->update();
-            header('Location: '.URL.'?controller=user&action=indexAdmin');
+            header('Location: '.URL.'user/indexAdmin');
         }else{
-            header('Location: '.URL.'?controller=auth&action=login');
+            header('Location: '.URL.'auth/login');
         }
     }
 }

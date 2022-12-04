@@ -18,7 +18,7 @@
 <body>
  <nav class="navbar navbar-expand-lg bg-black">
   <div class="container-fluid">
-    <a class="navbar-brand text-white ps-4 pt-2 pb-2 pe-2 fs-2" href="#"><img src="imagenes/logo.png"></a>
+    <a class="navbar-brand text-white ps-4 pt-2 pb-2 pe-2 fs-2" href="#"><img src="/2DAW/Carrito/assets/imagenes/logo.png"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,10 +26,10 @@
     
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="#">Inicio</a>
+          <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="#">Tienda</a>
+          <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}user/indexPublic">Tienda</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="#">Pest.public</a>
@@ -39,7 +39,7 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success text-white" type="submit">Search</button>
       </form>
-      <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}?controller=auth&action=login">
+      <a class="nav-link text-white ps-5 pt-2 pb-2 pe-5 fs-5" href="{{ URL }}auth/login">
         <div>Iniciar sesión</div>
       </a>
     </div>

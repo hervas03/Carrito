@@ -30,28 +30,19 @@ class AuthController{
             $_SESSION['identity'] = $user_ok;
             if(isset($_SESSION['admin'])){
                 //si el usuario que se registra es administrador, le redirigira a la pestaña de usuario
-                header('Location: '.URL.'?controller=user&action=indexAdmin');
+                header('Location: '.URL.'user/indexAdmin');
             }else{
                 //en caso de no ser ADMIN, redirigira a la pestaña de usuario
-                header('Location: '.URL.'?controller=auth&action=user');
+               
+                header('Location: '.URL.'user/indexUser');
             }
          }else{
-            var_dump("hay problemas");
-            exit();
-            header('Location: '.URL.'?controller=auth&action=login');
+            header('Location: '.URL.'auth/login');
          }
     }
 
     public function admin(){
         echo $GLOBALS['twig']->render('admin.twig',
-            [
-                'URL' => URL
-            ]
-        );
-    }
-
-    public function user(){
-        echo $GLOBALS['twig']->render('user.twig',
             [
                 'URL' => URL
             ]
@@ -68,7 +59,7 @@ class AuthController{
             unset($_SESSION['admin']);
         }
 
-        header('Location: '.URL.'?controller=index&action=index');        
+        header('Location: '.URL);        
     }
 
     public function userRegister(){
@@ -79,7 +70,7 @@ class AuthController{
         $user->setPassword(password_hash($_POST['password'], PASSWORD_BCRYPT, ['cont' => 4]));
         $user->save();
         $user->addRol();
-        header('Location: '.URL.'?controller=auth&action=login');
+        header('Location: '.URL.'auth/login');
     }
 
 }

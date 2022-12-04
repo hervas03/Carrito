@@ -8,7 +8,7 @@ class CategoriaController
         if (isset($_SESSION['identity']) && isset($_SESSION['admin'])) {
             $categoria = new Categoria();
             echo $GLOBALS["twig"]->render(
-                'adminPart/categoria.twig',
+                'adminPart/categoria/index.twig',
                 [
                     'categoria' => $categoria->findAll(),
                     'identity' => $_SESSION['identity'],
@@ -16,7 +16,7 @@ class CategoriaController
                 ]
             );
         } else {
-            header('Location: ' . URL . '?controller=auth&action=login');
+            header('Location: ' . URL . 'auth/login');
         }
     }
 
@@ -34,9 +34,9 @@ class CategoriaController
             $categoria->setId($_POST['id']);
             $categoria->setNombre($_POST['nombre']);
             $categoria->save();
-            header('Location: '.URL.'?controller=categoria&action=categoriaAdmin');
+            header('Location: '.URL.'categoria/categoriaAdmin');
         }else{
-            header('Location: '.URL.'?controller=auth&action=login');
+            header('Location: '.URL.'auth/login');
         }
     }
 
@@ -45,9 +45,9 @@ class CategoriaController
             $categoria = new Categoria();
             $categoria->setId($_GET['id']);
             $categoria->delete();
-            header('Location: '.URL.'?controller=categoria&action=categoriaAdmin');
+            header('Location: '.URL.'categoria/categoriaAdmin');
         }else{
-            header('Location: '.URL.'?controller=auth&action=login');
+            header('Location: '.URL.'auth/login');
         }
     }
 
@@ -64,7 +64,7 @@ class CategoriaController
                 ]
             );
         }else{
-            header('Location: '.URL.'controller=auth&action=login');
+            header('Location: '.URL.'auth/login');
         }
     }
 
@@ -74,9 +74,9 @@ class CategoriaController
             $categoria->setId($_POST['id']);
             $categoria->setNombre($_POST['nombre']);
             $categoria->update();
-            header('Location: '.URL.'?controller=categoria&action=categoriaAdmin');
+            header('Location: '.URL.'categoria/categoriaAdmin');
         }else{
-            header('Location: '.URL.'?controller=auth&action=login');
+            header('Location: '.URL.'auth/login');
         }
     }
 

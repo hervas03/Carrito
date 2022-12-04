@@ -1,0 +1,95 @@
+{# Enlazar este fichero con la plantilla correspondiente #}
+{% extends "layouts/private.twig" %}
+
+{% block title %}User Zone{% endblock %}
+
+{% block content %}
+<br><br>
+<!-- cart -->
+<div class="cart-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="cart-table-wrap">
+                    <table class="table {#table-bordered#}">
+                        <thead>
+                            <tr>
+                                <th class="col col-1 d-none" scope="col">Id</th>
+                                <th class="col col-2" scope="col">Producto</th>
+                                <th class="col col-1" scope="col">Precio</th>
+                                <th class="col col-2" scope="col">Cantidad</th>
+                                <th class="col col-2" scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {# {{ dump(carrito) }} #}
+                            {% set totalProducto = 0 %}
+                            {% set total = 0 %}
+                            {% for c in carrito %}
+                            {% set totalProducto = c.precio * c.cantidad %}
+                            {% set total = total + (c.precio * c.cantidad ) %}
+                            <tr>
+                                <th class="d-none">{{ c.producto_id }}</th>
+                                <td>{{ c.nombre }}</td>
+                                <td>{{ c.precio }}</td>
+                                <td><input type="number" value="{{ c.cantidad }}"></input></td>
+                                <td>{{ totalProducto }}</td>
+                            </tr>
+                            {# {% if c.nombre == "drone1" %}
+                            {% set total = 0 %}
+                            {% endif %} #}
+                            {% endfor %}
+                        </tbody>
+                        
+                        
+
+                    </table>
+                </div>
+                <div>
+                    <a class="p-3" href="{{ URL }}carrito/delete">
+                        <input type="submit" value="Eliminar carrito">
+                    </a>
+                </div>
+                <br>
+                <div>
+                    <a class="p-3" href="{{ URL }}pedidos/save">
+                        <input type="submit" value="Finalizar compra">
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4">
+                <div class="total-section">
+                    <table class="total-table bg-dark text-light">
+                        <thead class="total-table-head">
+                            <tr class="table-total-row">
+                                <th class="p-4">Tipo</th>
+                                <th class="p-4">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-total-row">
+                                <th class="p-4">Total articulos</th>
+                                <th class="p-4">{{ total }}€</th>
+                            </tr>
+                            <tr class="table-total-row">
+                                <th class="p-4">Envio</th>
+                                <th class="p-4">2 €</th>
+                            </tr>
+                            <tr class="table-total-row">
+                                <th class="p-4">Total</th>
+                                <th class="p-4">{{ total + 2 }} €</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="cart-buttons">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end cart -->
+{% endblock %}

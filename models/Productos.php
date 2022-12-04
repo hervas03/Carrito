@@ -111,7 +111,19 @@ class Productos implements Model
         
     }
 
+    
+
+        // Actualizar en la base de datos filtrando por id
+        public function updateByCantidad(){
+            $dataBase = DB::conectar();
+            $update = $dataBase->query("UPDATE productos SET stock=stock-'$this->stock' WHERE id_productos=$this->id");
+        }
+
     // Eliminar en la base de datos filtrando por id
-    public function delete(){}
+    public function delete()
+    {
+            $dataBase = DB::conectar();
+            $dataBase->query("DELETE FROM `hervas.sl`.`productos` WHERE (`id_productos` = '$this->id');");
+    }
 
 }
